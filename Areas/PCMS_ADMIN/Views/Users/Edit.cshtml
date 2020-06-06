@@ -1,0 +1,351 @@
+﻿@model PCMS_Application.Models.TblUser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PCMS | Edit User </title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+    @*<link href="~/Content/PRoleStyle.css" rel="stylesheet" />*@
+    <link href="~/Content/plugins/dataTables/datatables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/dataTables/datatables.min.js"></script>
+    <script src="~/Content/plugins/datapicker"></script>
+    <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <link href="~/Content/plugins/datapicker/datepicker3.css" rel="stylesheet" />
+    <script src="~/Scripts/Guriddo/js/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <link href="~/Content/plugins/chosen/bootstrap-chosen.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+</head>
+
+<body class="gray-bg">
+
+    @{
+        if (TempData["Error"] != null)
+        {
+            <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+            <script type="text/javascript">
+            swal("Error!",@Html.Raw(Json.Encode(TempData["Error"])), "error");
+            </script>
+        }
+    }
+
+</body>
+</html>
+
+<div class="text-left animated fadeInDown">
+    <div class="row">
+        <div class="modal-dialog modal-lg" style="width:70%;height:auto">
+
+            <div class="modal-content">
+                <div class="modal-header bg-success p-xs b-r-xs">
+                    <h3 class="modal-title">
+                        Edit User
+                    </h3>
+                </div>
+
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { id = "FrmUser", name = "FrmUser" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.UserId)
+                        @Html.HiddenFor(model => model.UserPasswordHash)
+                        @Html.HiddenFor(model => model.ResetPassword)
+                        @Html.HiddenFor(model => model.UserAccessTypeId)
+                        @Html.HiddenFor(model => model.UserStartDate)
+                        @Html.HiddenFor(model => model.UserEndDate)
+                        @Html.HiddenFor(model => model.EmailAddress)
+                        @Html.HiddenFor(model => model.IsUserVerified)
+
+                        <div class="panel-body BoxAndShadow">
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                @Html.LabelFor(model => model.SchoolId, "School")
+                                @Html.DropDownList("School", null, "Select", htmlAttributes: new { @class = "form-control chosen-select ", disabled = true })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                                <input id="SchoolId" name="SchoolId" value="@ViewBag.SchoolId" hidden />
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                @Html.LabelFor(model => model.UserName, "User Name") <span style="color:red">*</span>
+                                @Html.EditorFor(model => model.UserName)
+                                @Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text-danger", })
+                            </div>
+
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                @Html.LabelFor(model => model.UserAccessTypeId, "Access Type") <span style="color:red">*</span>
+                                @Html.DropDownList("UserAccessTypeId", null, "Select", htmlAttributes: new { @class = "form-control chosen-select", disabled = true })
+                                @Html.ValidationMessageFor(model => model.UserAccessTypeId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group w-100"></div>
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                @Html.LabelFor(model => model.EmailAddress, "Email Address") <span style="color:red">*</span>
+                                <input value="@Model.EmailAddress" name="EmailAddress"  id="EmailAddress"  class="form-control" type="text" readonly>
+                                @Html.ValidationMessageFor(model => model.EmailAddress, null, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em" id="data_1">
+                                <label for="UserStartDate">Start Date</label>
+                                <div class="input-group ">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span><input value="@Model.UserStartDate" id="UserStartDate" name="UserStartDate" class="form-control" type="text" readonly>
+                                </div>
+                                <span class="field-validation-valid" data-valmsg-for="UserStartDate" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em" id="data_1">
+                                <label for="UserEndDate">End Date</label>
+                                <div class="input-group ">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span><input value="@Model.UserEndDate" id="UserEndDate" name="UserEndDate" class="form-control" type="text" readonly>
+                                </div>
+                                <span class="field-validation-valid" data-valmsg-for="UserEndDate" data-valmsg-replace="true"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group w-100"></div>
+                        <div class="form-group w-100"></div>
+
+                        <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                            <input type="button" value="Save" class="btn btn-success" id="btnUser" />
+                            <a class="btn btn-default" href='@Url.Action("Index","Users")'>Cancel</a>
+                        </div>
+                        <div class="form-group w-100"></div>
+                    </div>
+                    }
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <a class="btn btn-block btn-success btn-sm" href='@Url.Action("Index","Users")'>Back</a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $('#btnUser').click(function (e) {
+        if ($("#FrmUser").valid() && $("#UserName").val() != null && $("#UserName").val() != "" && $("#UserAccessTypeId").val() != null && $("#UserAccessTypeId").val() != "" && $("#EmailAddress").val() != null && $("#EmailAddress").val() != "") {
+            document.forms["FrmUser"].submit();
+            $('#btnUser').prop('disabled', true);
+
+            $("[data-valmsg-for='UserName']").text("");
+            $("[data-valmsg-for='UserAccessTypeId']").text("");
+            $("[data-valmsg-for='EmailAddress']").text("");
+
+            }
+            else {
+            var UserName = $("#UserName").val();
+            var UserAccessTypeId = $("#UserAccessTypeId").val();
+            var EmailAddress = $("#EmailAddress").val();
+
+            if (UserName == null || UserName == "") {
+                $("[data-valmsg-for='UserName']").text("This field is required.");
+                $("[data-valmsg-for='UserName']").css('color', '#ed5565');
+                    e.preventDefault();
+                }
+                else {
+                $("[data-valmsg-for='UserName']").text("");
+            }
+
+            if (UserAccessTypeId == null || UserAccessTypeId == "") {
+                $("[data-valmsg-for='UserAccessTypeId']").text("This field is required.");
+                $("[data-valmsg-for='UserAccessTypeId']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else
+            {
+                $("[data-valmsg-for='UserAccessTypeId']").text("");
+            }
+
+            if (EmailAddress == null || EmailAddress == "") {
+                $("[data-valmsg-for='EmailAddress']").text("This field is required.");
+                $("[data-valmsg-for='EmailAddress']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else {
+                $("[data-valmsg-for='EmailAddress']").text("");
+            }
+
+            }
+        });
+
+    $('#UserAccessTypeId').keyup(function () {
+        if ($('#UserAccessTypeId').val() != null && $('#UserAccessTypeId').val() != "") {
+            $("[data-valmsg-for='UserAccessTypeId']").text("");
+        }
+    });
+
+    $('#EmailAddress').keyup(function () {
+        if ($('#EmailAddress').val() != null && $('#EmailAddress').val() != "") {
+            $("[data-valmsg-for='EmailAddress']").text("");
+        }
+    });
+
+    $('#UserAccessTypeId').change(function () {
+        if ($('#UserAccessTypeId').val() != null && $('#UserAccessTypeId').val() != "") {
+            $("[data-valmsg-for='UserAccessTypeId']").text("");
+        }
+    });
+
+        $(document).ready(function ()
+        {
+            $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+        });
+
+        });
+
+        $('.chosen-select').chosen({ width: "100%" });
+
+</script>
+
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>TblUser</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SchoolId, "SchoolId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("School", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserAccessTypeId, "UserAccessTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UserAccessTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserAccessTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserStartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserEndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsUserVerified, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsUserVerified)
+                    @Html.ValidationMessageFor(model => model.IsUserVerified, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserPasswordHash, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserPasswordHash, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserPasswordHash, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResetPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ResetPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ResetPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

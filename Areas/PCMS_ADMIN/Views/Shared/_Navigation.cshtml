@@ -1,0 +1,133 @@
+﻿<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <i class="fa fa-user-circle-o fa-4x"></i>
+                    </span>
+
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold" style="margin-left:10px;">@ViewBag.UserName</strong>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+
+            </li>
+            <li class=""><a href="@Url.Action("NavigationHomeIndex", "../PCMSNavigation")"><i class="fa fa-life-ring" title="PCMS Home Page"></i><span class="nav-label">PCMS Home</span></a></li>
+            <li class=""><a href="@Url.Action("SchoolNav", "../PCMSNavigation")"><i class="fa fa-institution" title="Schools"></i><span class="nav-label">Schools</span></a></li>
+            <li class=""><a href="@Url.Action("TeacherNav", "../PCMSNavigation")"><i class="fa fa-user" title="Teachers"></i><span class="nav-label">Teachers </span></a></li>
+            <li class=""><a href="@Url.Action("LearnerNav", "../PCMSNavigation")"><i class="fa fa-user" title="Learners"></i><span class="nav-label">Learners</span></a></li>
+            <li class=""><a href="@Url.Action("GuardianNav", "../PCMSNavigation")"><i class="fa fa-user" title="Guardians"></i><span class="nav-label">Guardians</span></a></li>
+            <li class=""><a href="@Url.Action("PCMSAdmin", "../PCMSNavigation")"><i class="fa fa-institution" title="PCMS Admin"></i><span class="nav-label">PCMS Admin</span></a></li>
+        </ul>
+    </div>
+</nav>
+
+@section Styles {
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/Content/OrnecyCss/OrnecyPrint.css")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+    @Styles.Render("~/Content/HorizontalTimelIne.css")
+    @Styles.Render("~/Content/plugins/sweetalert/sweetalert.css")
+    @Styles.Render("~/plugins/summernoteStyles")
+    @Styles.Render("~/Scripts/froala-editor/css/froala_editor.pkgd.min.css")
+    @Styles.Render("~/Scripts/froala-editor/css/froala_style.min.css")
+    @Styles.Render("~/Scripts/froala-editor/css/froala_editor.css")
+    @Styles.Render("~/Scripts/froala-editor/css/froala_editor.min.css")
+    @Styles.Render("~/Scripts/froala-editor/css/froala_editor.pkgd.cs")
+    @Styles.Render("~/Scripts/froala-editor/css/froala_style.css")
+    @Styles.Render("~/Scripts/froala-editor/css/themes/royal.min.css")
+    @Styles.Render("~/Content/jquery-ui-timepicker-addon.min.css")
+
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <style>
+
+        #Welcome {
+            background: rgba(00,00,00,0.5);
+        }
+
+        .iconChild {
+            color: #138F6A;
+            background-color: white;
+            border-color: #138F6A;
+            border-radius: 100px 100px;
+        }
+
+        #page-wrapper {
+            background-color: whitesmoke;
+        }
+    </style>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/plugins/touchPunch")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/tagInputs")
+    @Scripts.Render("~/plugins/duallist")
+    @Scripts.Render("~/plugins/sweetalert")
+    @Scripts.Render("~/plugins/summernote")
+    @Scripts.Render("~/Scripts/jquery-ui-timepicker-addon.min.js")
+    @Scripts.Render("~/Scripts/froala-editor/js/froala_editor.min.js")
+    @Scripts.Render("~/Scripts/froala-editor/js/froala_editor.pkgd.min.js")
+    @Scripts.Render("~/Scripts/froala-editor/js/plugins")
+
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var i = 0; var previous_hash = window.location.hash;
+            var x = setInterval(function () {
+                i++; window.location.hash = "/noop/" + i;
+                if (i == 10) {
+                    clearInterval(x);
+                    window.location.hash = previous_hash;
+                }
+            }, 10);
+        }
+
+
+        $(document).ready(function () {
+        });
+
+
+    </script>
+}
