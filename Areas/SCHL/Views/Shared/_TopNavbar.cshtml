@@ -1,0 +1,65 @@
+﻿<div class="row border-bottom" style="background-color:black">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header ">
+            
+            <label class="navbar minimalize-styl-2" style="color:#888888; font-weight:normal; align-items:center">
+                @{
+                    string NullSchl = "No School ( No School Code)";
+                    string Open = " (";
+                    string Close = ")";
+                    if (ViewBag.SchoolName != null && ViewBag.SchoolCode != null)
+                    {
+                        @ViewBag.SchoolName @Open @ViewBag.SchoolCode @Close
+
+                    }
+                    else
+                    {
+                        @NullSchl
+                    }
+                }
+
+            </label>
+            <form role="search" class="navbar-form-custom" method="post" action="">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control hide" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext">PCMS</span>
+            </li>
+
+            <li>
+                
+                
+                    
+                
+            </li>
+            
+                
+                    <li>
+                        <a href="@Url.Action("Logout", "../PCMSLogin")">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</div>
+
+<script type="text/javascript">
+
+       window.onload = function () {
+            var i = 0; var previous_hash = window.location.hash;
+            var x = setInterval(function () {
+                i++; window.location.hash = "/noop/" + i;
+                if (i == 10) {
+                    clearInterval(x);
+                    window.location.hash = previous_hash;
+                }
+            }, 10);
+    }
+
+</script>
