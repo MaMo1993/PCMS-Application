@@ -1,0 +1,237 @@
+﻿@model PCMS_Application.Models.TblGrade
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PCMS | Create Grade </title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+    @*<link href="~/Content/PRoleStyle.css" rel="stylesheet" />*@
+    <link href="~/Content/plugins/dataTables/datatables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/dataTables/datatables.min.js"></script>
+    <script src="~/Content/plugins/datapicker"></script>
+    <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <link href="~/Content/plugins/datapicker/datepicker3.css" rel="stylesheet" />
+    <script src="~/Scripts/Guriddo/js/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <link href="~/Content/plugins/chosen/bootstrap-chosen.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+</head>
+
+<body class="gray-bg">
+
+    @{
+        if (TempData["Error"] != null)
+        {
+            <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+            <script type="text/javascript">
+            swal("Error!",@Html.Raw(Json.Encode(TempData["Error"])), "error");
+            </script>
+        }
+    }
+
+    <div class="text-left animated fadeInDown">
+        <div class="row">
+            <div class="modal-dialog modal-lg" style="width:70%;height:auto">
+
+                <div class="modal-content">
+                    <div class="modal-header bg-success p-xs b-r-xs">
+                        <h3 class="modal-title">
+                            Create Grade
+                        </h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        @using (Html.BeginForm("Create", "Grades", FormMethod.Post, new { id = "FrmGrd", name = "FrmGrd" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+
+                                <div class="panel-body BoxAndShadow">
+
+                                    <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                        @Html.LabelFor(model => model.SchoolId, "School")
+                                        @Html.DropDownList("School", null, "Select", htmlAttributes: new { @class = "form-control chosen-select ", disabled = true })
+                                        @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                                        <input id="SchoolId" name="SchoolId" value="@ViewBag.SchoolId" hidden />
+                                    </div>
+
+                                    <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                        @Html.LabelFor(model => model.GradeName, "Grade Name") <span style="color:red">*</span>
+                                        @Html.EditorFor(model => model.GradeName)
+                                        @Html.ValidationMessageFor(model => model.GradeName, null, new { @class = "text-danger", })
+                                    </div>
+
+
+                                    <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                        @Html.LabelFor(model => model.LearnerId, "Learner") <span style="color:red">*</span>
+                                        @Html.DropDownList("LearnerId", null, "Select", htmlAttributes: new { @class = "form-control chosen-select" })
+                                        @Html.ValidationMessageFor(model => model.LearnerId, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group w-100"></div>
+
+                                    <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                        @Html.LabelFor(model => model.GradeMark, "Grade Mark") <span style="color:red">*</span>
+                                        @Html.EditorFor(model => model.GradeMark)
+                                        @Html.ValidationMessageFor(model => model.GradeMark, null, new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em" id="data_1">
+                                        <label for="GradeStartDate">Start Date</label>
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span><input value="" id="GradeStartDate" name="GradeStartDate" class="form-control" type="text">
+                                        </div>
+                                        <span class="field-validation-valid" data-valmsg-for="GradeStartDate" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em" id="data_1">
+                                        <label for="GradeEndDate">End Date</label>
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span><input value="" id="GradeEndDate" name="GradeEndDate" class="form-control" type="text">
+                                        </div>
+                                        <span class="field-validation-valid" data-valmsg-for="GradeEndDate" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group w-100"></div>
+                                <div class="form-group w-100"></div>
+
+                                <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                    <input type="button" value="Create" class="btn btn-success" id="btnGrd" />
+                                    <a class="btn btn-default" href='@Url.Action("Index","Grades")'>Cancel</a>
+                                </div>
+                                <div class="form-group w-100"></div>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <a class="btn btn-block btn-success btn-sm" href='@Url.Action("Index","Grades")'>Back</a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+
+
+    $('#btnGrd').click(function (e) {
+        if ($("#FrmGrd").valid() && $("#GradeName").val() != null && $("#GradeName").val() != "" && $("#LearnerId").val() != null && $("#LearnerId").val() != "" && $("#GradeMark").val() != null && $("#GradeMark").val() != "") {
+            document.forms["FrmGrd"].submit();
+            $('#btnGrd').prop('disabled', true);
+
+            $("[data-valmsg-for='GradeName']").text("");
+            $("[data-valmsg-for='LearnerId']").text("");
+            $("[data-valmsg-for='GradeMark']").text("");
+
+            }
+            else {
+            var GradeName = $("#GradeName").val();
+            var LearnerId = $("#LearnerId").val();
+            var GradeMark = $("#GradeMark").val();
+
+            if (GradeName == null || GradeName == "") {
+                $("[data-valmsg-for='GradeName']").text("This field is required.");
+                $("[data-valmsg-for='GradeName']").css('color', '#ed5565');
+                    e.preventDefault();
+                }
+                else {
+                $("[data-valmsg-for='GradeName']").text("");
+            }
+
+            if (LearnerId == null || LearnerId == "") {
+                $("[data-valmsg-for='LearnerId']").text("This field is required.");
+                $("[data-valmsg-for='LearnerId']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else
+            {
+                $("[data-valmsg-for='LearnerId']").text("");
+            }
+
+            if (GradeMark == null || GradeMark == "") {
+                $("[data-valmsg-for='GradeMark']").text("This field is required.");
+                $("[data-valmsg-for='GradeMark']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else {
+                $("[data-valmsg-for='GradeMark']").text("");
+            }
+
+            }
+        });
+
+    $('#GradeName').keyup(function () {
+        if ($('#GradeName').val() != null && $('#GradeName').val() != "") {
+            $("[data-valmsg-for='GradeName']").text("");
+        }
+    });
+
+    $('#GradeMark').keyup(function () {
+        if ($('#GradeMark').val() != null && $('#GradeMark').val() != "") {
+            $("[data-valmsg-for='GradeMark']").text("");
+        }
+    });
+
+    $('#LearnerId').change(function () {
+        if ($('#LearnerId').val() != null && $('#LearnerId').val() != "") {
+            $("[data-valmsg-for='LearnerId']").text("");
+        }
+    });
+
+        $(document).ready(function ()
+        {
+            $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+        });
+
+        });
+
+        $('.chosen-select').chosen({ width: "100%" });
+
+</script>
+
