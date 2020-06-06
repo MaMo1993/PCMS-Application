@@ -1,0 +1,25 @@
+﻿.Boxshadow {
+    padding: 8%;
+    padding-top: 2%;
+    margin-top: 4%;
+    box-shadow: 0 0 10px #808080;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#LogInDiv, #registerDiv {
+    margin-top: 5%;
+}
+
+body {
+    background-image: url('../Images/3d-illustration-of-satellite-orbiting-the-earth-P2X8FTJ.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/*input[type=text]:focus {
+    width: 104%;
+    height: 104%;
+    transition: ease-in-out, width .35s ease-in-out;
+}*/
