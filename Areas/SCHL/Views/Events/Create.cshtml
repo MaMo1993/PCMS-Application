@@ -1,0 +1,231 @@
+﻿@model PCMS_Application.Models.TblEvent
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PCMS | Create Event </title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+    @*<link href="~/Content/PRoleStyle.css" rel="stylesheet" />*@
+    <link href="~/Content/plugins/dataTables/datatables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/dataTables/datatables.min.js"></script>
+    <script src="~/Content/plugins/datapicker"></script>
+    <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <link href="~/Content/plugins/datapicker/datepicker3.css" rel="stylesheet" />
+    <script src="~/Scripts/Guriddo/js/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <link href="~/Content/plugins/chosen/bootstrap-chosen.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
+    <script src="~/Content/plugins/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+    <link href="~/Content/plugins/clockpicker/dist/bootstrap-clockpicker.min.css" rel="stylesheet" />
+
+    <style>
+        .clockpicker-popover {
+            z-index: 999999 !important;
+        }
+    </style>
+
+</head>
+
+<body class="gray-bg">
+
+    @{
+        if (TempData["Error"] != null)
+        {
+            <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+            <script type="text/javascript">
+            swal("Error!",@Html.Raw(Json.Encode(TempData["Error"])), "error");
+            </script>
+        }
+    }
+
+</body>
+</html>
+
+<div class="text-left animated fadeInDown">
+    <div class="row">
+        <div class="modal-dialog modal-lg" style="width:70%;height:auto">
+
+            <div class="modal-content">
+                <div class="modal-header bg-success p-xs b-r-xs">
+                    <h3 class="modal-title">
+                        Create Event
+                    </h3>
+                </div>
+
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("Create", "Events", FormMethod.Post, new { id = "FrmEvnt", name = "FrmEvnt" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="panel-body BoxAndShadow">
+
+                                <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                    @Html.LabelFor(model => model.SchoolId, "School")
+                                    @Html.DropDownList("School", null, "Select", htmlAttributes: new { @class = "form-control chosen-select ", disabled = true })
+                                    @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                                    <input id="SchoolId" name="SchoolId" value="@ViewBag.SchoolId" hidden />
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                    @Html.LabelFor(model => model.Event, "Event") <span style="color:red">*</span>
+                                    @Html.EditorFor(model => model.Event)
+                                    @Html.ValidationMessageFor(model => model.Event, null, new { @class = "text-danger", })
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                    @Html.LabelFor(model => model.EventPlace, "Event Place") <span style="color:red">*</span>
+                                    @Html.EditorFor(model => model.EventPlace)
+                                    @Html.ValidationMessageFor(model => model.EventPlace, null, new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group w-100"></div>
+
+                                <div class="form-group w-100"></div>
+
+                                <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em" id="data_1">
+                                    <label for="EventDate">Event Date</label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span><input value="" id="EventDate" name="EventDate" class="form-control" type="text">
+                                    </div>
+                                    <span class="field-validation-valid" data-valmsg-for="EventDate" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-6 clockpicker" style="padding-right: 2em" id="">
+                                    <label for="EventTime">Event  Time</label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </span><input type="text" class="form-control" value="" id="EventTime" name="EventTime">
+                                    </div>
+                                    <span class="field-validation-valid" data-valmsg-for="EventTime" data-valmsg-replace="true"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group w-100"></div>
+                            <div class="form-group w-100"></div>
+
+                            <div class="form-group col-md-4 col-sm-6" style="padding-right: 2em">
+                                <input type="button" value="Create" class="btn btn-success" id="btnEvnt" />
+                                <a class="btn btn-default" href='@Url.Action("Index","Events")'>Cancel</a>
+                            </div>
+                            <div class="form-group w-100"></div>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <a class="btn btn-block btn-success btn-sm" href='@Url.Action("Index","Events")'>Back</a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $('#btnEvnt').click(function (e) {
+        if ($("#FrmEvnt").valid() && $("#Event").val() != null && $("#Event").val() != "" && $("#EventPlace").val() != null && $("#EventPlace").val() != "") {
+            document.forms["FrmEvnt"].submit();
+            $('#btnEvnt').prop('disabled', true);
+
+            $("[data-valmsg-for='Event']").text("");
+            $("[data-valmsg-for='EventPlace']").text("");
+
+            }
+            else {
+            var Event = $("#Event").val();
+            var EventPlace = $("#EventPlace").val();
+
+            if (Event == null || Event == "") {
+                $("[data-valmsg-for='Event']").text("This field is required.");
+                $("[data-valmsg-for='Event']").css('color', '#ed5565');
+                    e.preventDefault();
+                }
+                else {
+                $("[data-valmsg-for='Event']").text("");
+            }
+
+            if (EventPlace == null || EventPlace == "") {
+                $("[data-valmsg-for='EventPlace']").text("This field is required.");
+                $("[data-valmsg-for='EventPlace']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else
+            {
+                $("[data-valmsg-for='EventPlace']").text("");
+            }
+
+            }
+        });
+
+    $('#Event').keyup(function () {
+        if ($('#Event').val() != null && $('#Event').val() != "") {
+            $("[data-valmsg-for='Event']").text("");
+        }
+    });
+
+    $('#EventPlace').keyup(function () {
+        if ($('#EventPlace').val() != null && $('#EventPlace').val() != "") {
+            $("[data-valmsg-for='EventPlace']").text("");
+        }
+    });
+
+
+        $(document).ready(function ()
+        {
+            $('.clockpicker').clockpicker({
+                placement: 'bottom',
+                align: 'right',
+                autoclose: true,
+                'default': 'now'
+            });
+
+            $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+        });
+
+        });
+
+        $('.chosen-select').chosen({ width: "100%" });
+
+</script>
