@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PCMS_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TblEvents">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="Event" Type="nvarchar" MaxLength="50" />
+    <Property Name="EventDate" Type="date" />
+    <Property Name="EventTime" Type="time" Precision="0" />
+    <Property Name="EventPlace" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblGrades">
+    <Key>
+      <PropertyRef Name="GradeId" />
+    </Key>
+    <Property Name="GradeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="LearnerId" Type="int" />
+    <Property Name="GradeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="GradeMark" Type="nvarchar" MaxLength="50" />
+    <Property Name="GradeStartDate" Type="date" />
+    <Property Name="GradeEndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="TblGuardians">
+    <Key>
+      <PropertyRef Name="GuardianId" />
+    </Key>
+    <Property Name="GuardianId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="UserlId" Type="int" />
+    <Property Name="LearnerId" Type="int" />
+    <Property Name="GuardianrName" Type="nvarchar" MaxLength="250" />
+    <Property Name="GuardianAddress" Type="nvarchar" MaxLength="250" />
+    <Property Name="GuardianEmail" Type="nvarchar" MaxLength="250" />
+    <Property Name="GuardianContactNr" Type="nvarchar" MaxLength="50" />
+    <Property Name="GuardianStartDate" Type="date" />
+    <Property Name="GuardianEndDate" Type="date" />
+    <Property Name="GuardianCode" Type="nvarchar" MaxLength="25" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="TblLearners">
+    <Key>
+      <PropertyRef Name="LearnerId" />
+    </Key>
+    <Property Name="LearnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherId" Type="int" />
+    <Property Name="SchoolId" Type="int" Nullable="false" />
+    <Property Name="LearnerName" Type="nvarchar" MaxLength="250" />
+    <Property Name="LearnerAddress" Type="nvarchar" MaxLength="250" />
+    <Property Name="LearnerEmail" Type="nvarchar" MaxLength="250" />
+    <Property Name="LearnerContactNr" Type="nvarchar" MaxLength="50" />
+    <Property Name="LearnerStartDate" Type="date" />
+    <Property Name="LearnerEndDate" Type="date" />
+    <Property Name="LearnerCode" Type="nvarchar" MaxLength="25" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="TblSchools">
+    <Key>
+      <PropertyRef Name="SchoolId" />
+    </Key>
+    <Property Name="SchoolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolCode" Type="nvarchar" MaxLength="25" StoreGeneratedPattern="Computed" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="250" />
+    <Property Name="SchoolAddress" Type="nvarchar" MaxLength="250" />
+    <Property Name="SchoolEmail" Type="nvarchar" MaxLength="250" />
+    <Property Name="SchoolContactNr" Type="nvarchar" MaxLength="50" />
+    <Property Name="SchoolStartDate" Type="date" />
+    <Property Name="SchoolEndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="TblSystemAdmins">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TblTeachers">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="TeacherName" Type="nvarchar" MaxLength="250" />
+    <Property Name="TeacherAddress" Type="nvarchar" MaxLength="250" />
+    <Property Name="TeacherEmail" Type="nvarchar" MaxLength="250" />
+    <Property Name="TeacherContactNr" Type="nvarchar" MaxLength="50" />
+    <Property Name="TeacherStartDate" Type="date" />
+    <Property Name="TeacherEndDate" Type="date" />
+    <Property Name="TeacherCode" Type="nvarchar" MaxLength="25" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="TblUserAccessTypes">
+    <Key>
+      <PropertyRef Name="UserAccessTypeId" />
+    </Key>
+    <Property Name="UserAccessTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserAccessType" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserAccessTypeStartDate" Type="date" />
+    <Property Name="UserAccessTypeEndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="TblUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserAccessTypeId" Type="int" />
+    <Property Name="UserStartDate" Type="date" />
+    <Property Name="UserEndDate" Type="date" />
+    <Property Name="IsUserVerified" Type="bit" />
+    <Property Name="UserPasswordHash" Type="nvarchar(max)" />
+    <Property Name="ResetPassword" Type="nvarchar" MaxLength="150" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_TblEvents_TblSchools">
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="0..1" />
+    <End Role="TblEvents" Type="Self.TblEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchools">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblEvents">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGrades_TblLearners">
+    <End Role="TblLearners" Type="Self.TblLearners" Multiplicity="0..1" />
+    <End Role="TblGrades" Type="Self.TblGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblLearners">
+        <PropertyRef Name="LearnerId" />
+      </Principal>
+      <Dependent Role="TblGrades">
+        <PropertyRef Name="LearnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGrades_TblSchools">
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="0..1" />
+    <End Role="TblGrades" Type="Self.TblGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchools">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblGrades">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGuardians_TblLearners">
+    <End Role="TblLearners" Type="Self.TblLearners" Multiplicity="0..1" />
+    <End Role="TblGuardians" Type="Self.TblGuardians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblLearners">
+        <PropertyRef Name="LearnerId" />
+      </Principal>
+      <Dependent Role="TblGuardians">
+        <PropertyRef Name="LearnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGuardians_TblSchools">
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="0..1" />
+    <End Role="TblGuardians" Type="Self.TblGuardians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchools">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblGuardians">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGuardians_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="0..1" />
+    <End Role="TblGuardians" Type="Self.TblGuardians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblGuardians">
+        <PropertyRef Name="UserlId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblLearners_TblSchools">
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="1" />
+    <End Role="TblLearners" Type="Self.TblLearners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchools">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblLearners">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblLearners_TblTeachers">
+    <End Role="TblTeachers" Type="Self.TblTeachers" Multiplicity="0..1" />
+    <End Role="TblLearners" Type="Self.TblLearners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTeachers">
+        <PropertyRef Name="TeacherId" />
+      </Principal>
+      <Dependent Role="TblLearners">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblSchools_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="0..1" />
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblSchools">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblTeachers_TblSchools">
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="1" />
+    <End Role="TblTeachers" Type="Self.TblTeachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchools">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblTeachers">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblTeachers_TblUsers">
+    <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="0..1" />
+    <End Role="TblTeachers" Type="Self.TblTeachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblTeachers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_TblSchools">
+    <End Role="TblSchools" Type="Self.TblSchools" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchools">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_TblUserAccessTypes">
+    <End Role="TblUserAccessTypes" Type="Self.TblUserAccessTypes" Multiplicity="0..1" />
+    <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUserAccessTypes">
+        <PropertyRef Name="UserAccessTypeId" />
+      </Principal>
+      <Dependent Role="TblUsers">
+        <PropertyRef Name="UserAccessTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PCMS_DbModelStoreContainer">
+    <EntitySet Name="TblEvents" EntityType="Self.TblEvents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblGrades" EntityType="Self.TblGrades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblGuardians" EntityType="Self.TblGuardians" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblLearners" EntityType="Self.TblLearners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSchools" EntityType="Self.TblSchools" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSystemAdmins" EntityType="Self.TblSystemAdmins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblTeachers" EntityType="Self.TblTeachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblUserAccessTypes" EntityType="Self.TblUserAccessTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblUsers" EntityType="Self.TblUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TblEvents_TblSchools" Association="Self.FK_TblEvents_TblSchools">
+      <End Role="TblSchools" EntitySet="TblSchools" />
+      <End Role="TblEvents" EntitySet="TblEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGrades_TblLearners" Association="Self.FK_TblGrades_TblLearners">
+      <End Role="TblLearners" EntitySet="TblLearners" />
+      <End Role="TblGrades" EntitySet="TblGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGrades_TblSchools" Association="Self.FK_TblGrades_TblSchools">
+      <End Role="TblSchools" EntitySet="TblSchools" />
+      <End Role="TblGrades" EntitySet="TblGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGuardians_TblLearners" Association="Self.FK_TblGuardians_TblLearners">
+      <End Role="TblLearners" EntitySet="TblLearners" />
+      <End Role="TblGuardians" EntitySet="TblGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGuardians_TblSchools" Association="Self.FK_TblGuardians_TblSchools">
+      <End Role="TblSchools" EntitySet="TblSchools" />
+      <End Role="TblGuardians" EntitySet="TblGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGuardians_TblUsers" Association="Self.FK_TblGuardians_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="TblGuardians" EntitySet="TblGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblLearners_TblSchools" Association="Self.FK_TblLearners_TblSchools">
+      <End Role="TblSchools" EntitySet="TblSchools" />
+      <End Role="TblLearners" EntitySet="TblLearners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblLearners_TblTeachers" Association="Self.FK_TblLearners_TblTeachers">
+      <End Role="TblTeachers" EntitySet="TblTeachers" />
+      <End Role="TblLearners" EntitySet="TblLearners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblSchools_TblUsers" Association="Self.FK_TblSchools_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="TblSchools" EntitySet="TblSchools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblTeachers_TblSchools" Association="Self.FK_TblTeachers_TblSchools">
+      <End Role="TblSchools" EntitySet="TblSchools" />
+      <End Role="TblTeachers" EntitySet="TblTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblTeachers_TblUsers" Association="Self.FK_TblTeachers_TblUsers">
+      <End Role="TblUsers" EntitySet="TblUsers" />
+      <End Role="TblTeachers" EntitySet="TblTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_TblSchools" Association="Self.FK_TblUsers_TblSchools">
+      <End Role="TblSchools" EntitySet="TblSchools" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_TblUserAccessTypes" Association="Self.FK_TblUsers_TblUserAccessTypes">
+      <End Role="TblUserAccessTypes" EntitySet="TblUserAccessTypes" />
+      <End Role="TblUsers" EntitySet="TblUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

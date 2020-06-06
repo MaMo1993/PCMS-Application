@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PCMS_DbModelStoreContainer" CdmEntityContainer="PCMS_DbEntities">
+    <EntitySetMapping Name="TblGrades">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblGrade">
+        <MappingFragment StoreEntitySet="TblGrades">
+          <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="LearnerId" ColumnName="LearnerId" />
+          <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+          <ScalarProperty Name="GradeMark" ColumnName="GradeMark" />
+          <ScalarProperty Name="GradeStartDate" ColumnName="GradeStartDate" />
+          <ScalarProperty Name="GradeEndDate" ColumnName="GradeEndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblUserAccessTypes">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblUserAccessType">
+        <MappingFragment StoreEntitySet="TblUserAccessTypes">
+          <ScalarProperty Name="UserAccessTypeId" ColumnName="UserAccessTypeId" />
+          <ScalarProperty Name="UserAccessType" ColumnName="UserAccessType" />
+          <ScalarProperty Name="UserAccessTypeStartDate" ColumnName="UserAccessTypeStartDate" />
+          <ScalarProperty Name="UserAccessTypeEndDate" ColumnName="UserAccessTypeEndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblUsers">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblUser">
+        <MappingFragment StoreEntitySet="TblUsers">
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="ResetPassword" ColumnName="ResetPassword" />
+          <ScalarProperty Name="UserPasswordHash" ColumnName="UserPasswordHash" />
+          <ScalarProperty Name="IsUserVerified" ColumnName="IsUserVerified" />
+          <ScalarProperty Name="UserEndDate" ColumnName="UserEndDate" />
+          <ScalarProperty Name="UserStartDate" ColumnName="UserStartDate" />
+          <ScalarProperty Name="UserAccessTypeId" ColumnName="UserAccessTypeId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSystemAdmins">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblSystemAdmin">
+        <MappingFragment StoreEntitySet="TblSystemAdmins">
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSchools">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblSchool">
+        <MappingFragment StoreEntitySet="TblSchools">
+          <ScalarProperty Name="SchoolEndDate" ColumnName="SchoolEndDate" />
+          <ScalarProperty Name="SchoolStartDate" ColumnName="SchoolStartDate" />
+          <ScalarProperty Name="SchoolContactNr" ColumnName="SchoolContactNr" />
+          <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+          <ScalarProperty Name="SchoolAddress" ColumnName="SchoolAddress" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SchoolCode" ColumnName="SchoolCode" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblTeachers">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblTeacher">
+        <MappingFragment StoreEntitySet="TblTeachers">
+          <ScalarProperty Name="TeacherCode" ColumnName="TeacherCode" />
+          <ScalarProperty Name="TeacherEndDate" ColumnName="TeacherEndDate" />
+          <ScalarProperty Name="TeacherStartDate" ColumnName="TeacherStartDate" />
+          <ScalarProperty Name="TeacherContactNr" ColumnName="TeacherContactNr" />
+          <ScalarProperty Name="TeacherEmail" ColumnName="TeacherEmail" />
+          <ScalarProperty Name="TeacherAddress" ColumnName="TeacherAddress" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblGuardians">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblGuardian">
+        <MappingFragment StoreEntitySet="TblGuardians">
+          <ScalarProperty Name="GuardianCode" ColumnName="GuardianCode" />
+          <ScalarProperty Name="GuardianEndDate" ColumnName="GuardianEndDate" />
+          <ScalarProperty Name="GuardianStartDate" ColumnName="GuardianStartDate" />
+          <ScalarProperty Name="GuardianContactNr" ColumnName="GuardianContactNr" />
+          <ScalarProperty Name="GuardianEmail" ColumnName="GuardianEmail" />
+          <ScalarProperty Name="GuardianAddress" ColumnName="GuardianAddress" />
+          <ScalarProperty Name="GuardianrName" ColumnName="GuardianrName" />
+          <ScalarProperty Name="LearnerId" ColumnName="LearnerId" />
+          <ScalarProperty Name="UserlId" ColumnName="UserlId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="GuardianId" ColumnName="GuardianId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblLearners">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblLearner">
+        <MappingFragment StoreEntitySet="TblLearners">
+          <ScalarProperty Name="LearnerCode" ColumnName="LearnerCode" />
+          <ScalarProperty Name="LearnerEndDate" ColumnName="LearnerEndDate" />
+          <ScalarProperty Name="LearnerStartDate" ColumnName="LearnerStartDate" />
+          <ScalarProperty Name="LearnerContactNr" ColumnName="LearnerContactNr" />
+          <ScalarProperty Name="LearnerEmail" ColumnName="LearnerEmail" />
+          <ScalarProperty Name="LearnerAddress" ColumnName="LearnerAddress" />
+          <ScalarProperty Name="LearnerName" ColumnName="LearnerName" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="LearnerId" ColumnName="LearnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblEvents">
+      <EntityTypeMapping TypeName="PCMS_DbModel.TblEvent">
+        <MappingFragment StoreEntitySet="TblEvents">
+          <ScalarProperty Name="EventPlace" ColumnName="EventPlace" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

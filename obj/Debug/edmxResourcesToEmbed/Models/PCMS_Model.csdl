@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PCMS_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TblGrade">
+    <Key>
+      <PropertyRef Name="GradeId" />
+    </Key>
+    <Property Name="GradeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="LearnerId" Type="Int32" />
+    <Property Name="GradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GradeMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GradeStartDate" Type="DateTime" Precision="0" />
+    <Property Name="GradeEndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TblSchool" Relationship="PCMS_DbModel.FK_TblGrades_TblSchools" FromRole="TblGrade" ToRole="TblSchool" />
+    <NavigationProperty Name="TblLearner" Relationship="PCMS_DbModel.FK_TblGrades_TblLearners" FromRole="TblGrade" ToRole="TblLearner" />
+  </EntityType>
+  <EntityType Name="TblUserAccessType">
+    <Key>
+      <PropertyRef Name="UserAccessTypeId" />
+    </Key>
+    <Property Name="UserAccessTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserAccessType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserAccessTypeStartDate" Type="DateTime" Precision="0" />
+    <Property Name="UserAccessTypeEndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TblUsers" Relationship="PCMS_DbModel.FK_TblUsers_TblUserAccessTypes" FromRole="TblUserAccessType" ToRole="TblUser" />
+  </EntityType>
+  <EntityContainer Name="PCMS_DbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TblGrades" EntityType="Self.TblGrade" />
+    <EntitySet Name="TblUserAccessTypes" EntityType="Self.TblUserAccessType" />
+    <EntitySet Name="TblUsers" EntityType="PCMS_DbModel.TblUser" />
+    <AssociationSet Name="FK_TblUsers_TblUserAccessTypes" Association="PCMS_DbModel.FK_TblUsers_TblUserAccessTypes">
+      <End Role="TblUserAccessType" EntitySet="TblUserAccessTypes" />
+      <End Role="TblUser" EntitySet="TblUsers" />
+    </AssociationSet>
+    <EntitySet Name="TblSystemAdmins" EntityType="PCMS_DbModel.TblSystemAdmin" />
+    <EntitySet Name="TblSchools" EntityType="PCMS_DbModel.TblSchool" />
+    <AssociationSet Name="FK_TblGrades_TblSchools" Association="PCMS_DbModel.FK_TblGrades_TblSchools">
+      <End Role="TblSchool" EntitySet="TblSchools" />
+      <End Role="TblGrade" EntitySet="TblGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblSchools_TblUsers" Association="PCMS_DbModel.FK_TblSchools_TblUsers">
+      <End Role="TblUser" EntitySet="TblUsers" />
+      <End Role="TblSchool" EntitySet="TblSchools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUsers_TblSchools" Association="PCMS_DbModel.FK_TblUsers_TblSchools">
+      <End Role="TblSchool" EntitySet="TblSchools" />
+      <End Role="TblUser" EntitySet="TblUsers" />
+    </AssociationSet>
+    <EntitySet Name="TblTeachers" EntityType="PCMS_DbModel.TblTeacher" />
+    <AssociationSet Name="FK_TblTeachers_TblSchools" Association="PCMS_DbModel.FK_TblTeachers_TblSchools">
+      <End Role="TblSchool" EntitySet="TblSchools" />
+      <End Role="TblTeacher" EntitySet="TblTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblTeachers_TblUsers" Association="PCMS_DbModel.FK_TblTeachers_TblUsers">
+      <End Role="TblUser" EntitySet="TblUsers" />
+      <End Role="TblTeacher" EntitySet="TblTeachers" />
+    </AssociationSet>
+    <EntitySet Name="TblGuardians" EntityType="PCMS_DbModel.TblGuardian" />
+    <EntitySet Name="TblLearners" EntityType="PCMS_DbModel.TblLearner" />
+    <AssociationSet Name="FK_TblGrades_TblLearners" Association="PCMS_DbModel.FK_TblGrades_TblLearners">
+      <End Role="TblLearner" EntitySet="TblLearners" />
+      <End Role="TblGrade" EntitySet="TblGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGuardians_TblLearners" Association="PCMS_DbModel.FK_TblGuardians_TblLearners">
+      <End Role="TblLearner" EntitySet="TblLearners" />
+      <End Role="TblGuardian" EntitySet="TblGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGuardians_TblSchools" Association="PCMS_DbModel.FK_TblGuardians_TblSchools">
+      <End Role="TblSchool" EntitySet="TblSchools" />
+      <End Role="TblGuardian" EntitySet="TblGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblGuardians_TblUsers" Association="PCMS_DbModel.FK_TblGuardians_TblUsers">
+      <End Role="TblUser" EntitySet="TblUsers" />
+      <End Role="TblGuardian" EntitySet="TblGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblLearners_TblSchools" Association="PCMS_DbModel.FK_TblLearners_TblSchools">
+      <End Role="TblSchool" EntitySet="TblSchools" />
+      <End Role="TblLearner" EntitySet="TblLearners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblLearners_TblTeachers" Association="PCMS_DbModel.FK_TblLearners_TblTeachers">
+      <End Role="TblTeacher" EntitySet="TblTeachers" />
+      <End Role="TblLearner" EntitySet="TblLearners" />
+    </AssociationSet>
+    <EntitySet Name="TblEvents" EntityType="PCMS_DbModel.TblEvent" />
+    <AssociationSet Name="FK_TblEvents_TblSchools" Association="PCMS_DbModel.FK_TblEvents_TblSchools">
+      <End Role="TblSchool" EntitySet="TblSchools" />
+      <End Role="TblEvent" EntitySet="TblEvents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserAccessTypeId" Type="Int32" />
+    <Property Name="UserStartDate" Type="DateTime" Precision="0" />
+    <Property Name="UserEndDate" Type="DateTime" Precision="0" />
+    <Property Name="IsUserVerified" Type="Boolean" />
+    <Property Name="UserPasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ResetPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TblUserAccessType" Relationship="PCMS_DbModel.FK_TblUsers_TblUserAccessTypes" FromRole="TblUser" ToRole="TblUserAccessType" />
+    <NavigationProperty Name="TblSchools" Relationship="PCMS_DbModel.FK_TblSchools_TblUsers" FromRole="TblUser" ToRole="TblSchool" />
+    <NavigationProperty Name="TblSchool" Relationship="PCMS_DbModel.FK_TblUsers_TblSchools" FromRole="TblUser" ToRole="TblSchool" />
+    <NavigationProperty Name="TblTeachers" Relationship="PCMS_DbModel.FK_TblTeachers_TblUsers" FromRole="TblUser" ToRole="TblTeacher" />
+    <NavigationProperty Name="TblGuardians" Relationship="PCMS_DbModel.FK_TblGuardians_TblUsers" FromRole="TblUser" ToRole="TblGuardian" />
+  </EntityType>
+  <Association Name="FK_TblUsers_TblUserAccessTypes">
+    <End Type="PCMS_DbModel.TblUserAccessType" Role="TblUserAccessType" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblUser" Role="TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUserAccessType">
+        <PropertyRef Name="UserAccessTypeId" />
+      </Principal>
+      <Dependent Role="TblUser">
+        <PropertyRef Name="UserAccessTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblSystemAdmin">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TblSchool">
+    <Key>
+      <PropertyRef Name="SchoolId" />
+    </Key>
+    <Property Name="SchoolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="SchoolName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolContactNr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolStartDate" Type="DateTime" Precision="0" />
+    <Property Name="SchoolEndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TblGrades" Relationship="PCMS_DbModel.FK_TblGrades_TblSchools" FromRole="TblSchool" ToRole="TblGrade" />
+    <NavigationProperty Name="TblUser" Relationship="PCMS_DbModel.FK_TblSchools_TblUsers" FromRole="TblSchool" ToRole="TblUser" />
+    <NavigationProperty Name="TblUsers" Relationship="PCMS_DbModel.FK_TblUsers_TblSchools" FromRole="TblSchool" ToRole="TblUser" />
+    <NavigationProperty Name="TblTeachers" Relationship="PCMS_DbModel.FK_TblTeachers_TblSchools" FromRole="TblSchool" ToRole="TblTeacher" />
+    <NavigationProperty Name="TblGuardians" Relationship="PCMS_DbModel.FK_TblGuardians_TblSchools" FromRole="TblSchool" ToRole="TblGuardian" />
+    <NavigationProperty Name="TblLearners" Relationship="PCMS_DbModel.FK_TblLearners_TblSchools" FromRole="TblSchool" ToRole="TblLearner" />
+    <NavigationProperty Name="TblEvents" Relationship="PCMS_DbModel.FK_TblEvents_TblSchools" FromRole="TblSchool" ToRole="TblEvent" />
+  </EntityType>
+  <Association Name="FK_TblGrades_TblSchools">
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblGrade" Role="TblGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchool">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblGrade">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblSchools_TblUsers">
+    <End Type="PCMS_DbModel.TblUser" Role="TblUser" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblSchool">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUsers_TblSchools">
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblUser" Role="TblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchool">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblUser">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblTeacher">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="TeacherName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherContactNr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherStartDate" Type="DateTime" Precision="0" />
+    <Property Name="TeacherEndDate" Type="DateTime" Precision="0" />
+    <Property Name="TeacherCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="TblSchool" Relationship="PCMS_DbModel.FK_TblTeachers_TblSchools" FromRole="TblTeacher" ToRole="TblSchool" />
+    <NavigationProperty Name="TblUser" Relationship="PCMS_DbModel.FK_TblTeachers_TblUsers" FromRole="TblTeacher" ToRole="TblUser" />
+    <NavigationProperty Name="TblLearners" Relationship="PCMS_DbModel.FK_TblLearners_TblTeachers" FromRole="TblTeacher" ToRole="TblLearner" />
+  </EntityType>
+  <Association Name="FK_TblTeachers_TblSchools">
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="1" />
+    <End Type="PCMS_DbModel.TblTeacher" Role="TblTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchool">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblTeacher">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblTeachers_TblUsers">
+    <End Type="PCMS_DbModel.TblUser" Role="TblUser" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblTeacher" Role="TblTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblTeacher">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblGuardian">
+    <Key>
+      <PropertyRef Name="GuardianId" />
+    </Key>
+    <Property Name="GuardianId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="UserlId" Type="Int32" />
+    <Property Name="LearnerId" Type="Int32" />
+    <Property Name="GuardianrName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianContactNr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianStartDate" Type="DateTime" Precision="0" />
+    <Property Name="GuardianEndDate" Type="DateTime" Precision="0" />
+    <Property Name="GuardianCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="TblLearner" Relationship="PCMS_DbModel.FK_TblGuardians_TblLearners" FromRole="TblGuardian" ToRole="TblLearner" />
+    <NavigationProperty Name="TblSchool" Relationship="PCMS_DbModel.FK_TblGuardians_TblSchools" FromRole="TblGuardian" ToRole="TblSchool" />
+    <NavigationProperty Name="TblUser" Relationship="PCMS_DbModel.FK_TblGuardians_TblUsers" FromRole="TblGuardian" ToRole="TblUser" />
+  </EntityType>
+  <EntityType Name="TblLearner">
+    <Key>
+      <PropertyRef Name="LearnerId" />
+    </Key>
+    <Property Name="LearnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherId" Type="Int32" />
+    <Property Name="SchoolId" Type="Int32" Nullable="false" />
+    <Property Name="LearnerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LearnerAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LearnerEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LearnerContactNr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LearnerStartDate" Type="DateTime" Precision="0" />
+    <Property Name="LearnerEndDate" Type="DateTime" Precision="0" />
+    <Property Name="LearnerCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="TblGrades" Relationship="PCMS_DbModel.FK_TblGrades_TblLearners" FromRole="TblLearner" ToRole="TblGrade" />
+    <NavigationProperty Name="TblGuardians" Relationship="PCMS_DbModel.FK_TblGuardians_TblLearners" FromRole="TblLearner" ToRole="TblGuardian" />
+    <NavigationProperty Name="TblSchool" Relationship="PCMS_DbModel.FK_TblLearners_TblSchools" FromRole="TblLearner" ToRole="TblSchool" />
+    <NavigationProperty Name="TblTeacher" Relationship="PCMS_DbModel.FK_TblLearners_TblTeachers" FromRole="TblLearner" ToRole="TblTeacher" />
+  </EntityType>
+  <Association Name="FK_TblGrades_TblLearners">
+    <End Type="PCMS_DbModel.TblLearner" Role="TblLearner" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblGrade" Role="TblGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblLearner">
+        <PropertyRef Name="LearnerId" />
+      </Principal>
+      <Dependent Role="TblGrade">
+        <PropertyRef Name="LearnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGuardians_TblLearners">
+    <End Type="PCMS_DbModel.TblLearner" Role="TblLearner" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblGuardian" Role="TblGuardian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblLearner">
+        <PropertyRef Name="LearnerId" />
+      </Principal>
+      <Dependent Role="TblGuardian">
+        <PropertyRef Name="LearnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGuardians_TblSchools">
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblGuardian" Role="TblGuardian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchool">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblGuardian">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblGuardians_TblUsers">
+    <End Type="PCMS_DbModel.TblUser" Role="TblUser" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblGuardian" Role="TblGuardian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblGuardian">
+        <PropertyRef Name="UserlId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblLearners_TblSchools">
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="1" />
+    <End Type="PCMS_DbModel.TblLearner" Role="TblLearner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchool">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblLearner">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblLearners_TblTeachers">
+    <End Type="PCMS_DbModel.TblTeacher" Role="TblTeacher" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblLearner" Role="TblLearner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTeacher">
+        <PropertyRef Name="TeacherId" />
+      </Principal>
+      <Dependent Role="TblLearner">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblEvent">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="Event" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EventDate" Type="DateTime" Precision="0" />
+    <Property Name="EventTime" Type="Time" Precision="0" />
+    <Property Name="EventPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TblSchool" Relationship="PCMS_DbModel.FK_TblEvents_TblSchools" FromRole="TblEvent" ToRole="TblSchool" />
+  </EntityType>
+  <Association Name="FK_TblEvents_TblSchools">
+    <End Type="PCMS_DbModel.TblSchool" Role="TblSchool" Multiplicity="0..1" />
+    <End Type="PCMS_DbModel.TblEvent" Role="TblEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSchool">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="TblEvent">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
