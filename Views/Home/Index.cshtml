@@ -1,0 +1,433 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>PCMS | Landing Page</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Content/Regna/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Regna/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Regna/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Regna/assets/vendor/venobox/venobox.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/Content/Regna/assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Regna - v2.0.0
+    * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+
+    @{
+        if (TempData["Sent"] != null)
+        {
+            <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+            <script type="text/javascript">
+            swal("Successful!",@Html.Raw(Json.Encode(TempData["Sent"])), "success");
+            </script>
+        }
+    }
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <a href="#hero"><img src="assets/img/logo.png" alt=""></a>
+                <!-- Uncomment below if you prefer to use a text logo -->
+                <!--<h1><a href="#hero">Regna</a></h1>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="@Url.Action("LoginHomeIndex", "PCMSLogin")" target="_blank"><span class="nav-label">Login</span></a></li>
+                    <li class="menu-active"><a href="#hero">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <div class="hero-container">
+            <h1>Welcome to PCMS</h1>
+            <h2>We make monitoring your children at school easy</h2>
+            <a href="#about" class="btn-get-started">Get Started</a>
+        </div>
+    </section><!-- End Hero Section -->
+
+    <main id="main">
+
+        <!-- ======= About Section ======= -->
+        <section id="about">
+            <div class="container">
+                <div class="row about-container">
+
+                    <div class="col-lg-6 content order-lg-1 order-2">
+                        <h2 class="title">Few Words About Us</h2>
+                        <p>
+                            The system is a Parent-Children Management System (PCMS) that enables parents to monitor their child(ren) in a specific school.
+                        </p>
+
+                        <div class="icon-box wow fadeInUp">
+                            <div class="icon"><i class="fa fa-shopping-bag"></i></div>
+                            <h4 class="title"><a href="">Parents</a></h4>
+                            <p class="description">Monitors children</p>
+                        </div>
+
+                        <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="icon"><i class="fa fa-photo"></i></div>
+                            <h4 class="title"><a href="">Teachers</a></h4>
+                            <p class="description">Manges children</p>
+                        </div>
+
+                        <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="icon"><i class="fa fa-bar-chart"></i></div>
+                            <h4 class="title"><a href="">Schools</a></h4>
+                            <p class="description">Manages teachers</p>
+                        </div>
+
+                    </div>
+
+                    @*<div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>*@
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+        <!-- ======= Facts Section ======= -->
+        <section id="facts">
+            <div class="container wow fadeIn">
+                <div class="section-header">
+                    <h3 class="section-title">Facts</h3>
+                    <p class="section-description">The following is the PCMS stats</p>
+                </div>
+                <div class="row counters">
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up"> @ViewBag.Children</span>
+                        <p>Children</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up"> @ViewBag.Parents</span>
+                        <p>Parents</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up"> @ViewBag.Teachers</span>
+                        <p>Teachers</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up"> @ViewBag.Schools</span>
+                        <p>Schools</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Facts Section -->
+        <!-- ======= Services Section ======= -->
+        <section id="services">
+            <div class="container wow fadeIn">
+                <div class="section-header">
+                    <h3 class="section-title">Services</h3>
+                    <p class="section-description">PCMS offers these services</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-desktop"></i></a></div>
+                            <h4 class="title"><a href="">Viewing Children Info</a></h4>
+                            <p class="description">Parents view their children's information such as personal info, grades and etc</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-bar-chart"></i></a></div>
+                            <h4 class="title"><a href="">Managing Children</a></h4>
+                            <p class="description">Teachers and schools manage children's info such as personal info, grades and etc</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-paper-plane"></i></a></div>
+                            <h4 class="title"><a href="">Managing Parents</a></h4>
+                            <p class="description">Teachers manage parents' info such as personal info</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-photo"></i></a></div>
+                            <h4 class="title"><a href="">Managing Teachers</a></h4>
+                            <p class="description">Schools manage teachers' info</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-road"></i></a></div>
+                            <h4 class="title"><a href="">Managing School</a></h4>
+                            <p class="description">PCMS system admini manages schools' info </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="box">
+                            <div class="icon"><a href=""><i class="fa fa-shopping-bag"></i></a></div>
+                            <h4 class="title"><a href="">Managing User Info</a></h4>
+                            <p class="description">PCMS system admini all user accounts and information</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+        <!-- ======= Contact Section ======= -->
+        <section id="contact">
+            <div class="container wow fadeInUp">
+                <div class="section-header">
+                    <h3 class="section-title">Contact</h3>
+                    <p class="section-description">Get in touch with us!</p>
+                </div>
+            </div>
+
+            <!-- Uncomment below if you wan to use dynamic maps -->
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>*@
+
+            <div class="container wow fadeInUp mt-5">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-3 col-md-4">
+
+                        <div class="info">
+                            <div>
+                                <i class="fa fa-map-marker"></i>
+                                <p>27 Knob Thorn Ave<br> Centurion 0517</p>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-envelope"></i>
+                                <p>info@pcms.com</p>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-phone"></i>
+                                <p>0123456789</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+
+                    @{
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="col-lg-5 col-md-8">
+                            <div class="form">
+                                <form class="m-t" role="form" action="@Url.Action("SendMsg", "Home")" method="post" id="SndForm" name="SndForm">
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <span style="color:red">*</span> <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                        <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span style="color:red">*</span> <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                        <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span style="color:red">*</span> <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter subject" />
+                                        <span class="field-validation-valid" data-valmsg-for="subject" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span style="color:red">*</span> <input type="text" class="form-control" name="message" id="message" placeholder="Message" data-rule="minlen:4" data-msg="Please write something for us" />
+                                        @*<span style="color:red">*</span> <textarea class="form-control" name="message" rows="5" data-msg="Please write something for us" placeholder="Message"></textarea>*@
+                                        <span class="field-validation-valid" data-valmsg-for="message" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <input type="button" value="Send Message" class="btn btn-secondary" id="SndBtn" />
+
+                                </form>
+                            </div>
+                        </div>
+
+                    }
+
+
+
+                </div>
+
+            </div>
+        </section><!-- End Contact Section -->
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>PCMS</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
+                -->
+                @*Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>*@
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Content/Regna/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/Content/Regna/assets/vendor/counterup/counterup.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/wow/wow.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/superfish/superfish.min.js"></script>
+    <script src="~/Content/Regna/assets/vendor/hoverIntent/hoverIntent.js"></script>
+    <script src="~/Content/Regna/assets/vendor/venobox/venobox.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/Content/Regna/assets/js/main.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+    $('#SndBtn').click(function (e) {
+        if ($("#SndForm").valid() && $("#name").val() != null && $("#name").val() != "" && $("#email").val() != null && $("#email").val() != "" && $("#subject").val() != null && $("#subject").val() != "" && $("#message").val() != null && $("#message").val() != "") {
+            document.forms["SndForm"].submit();
+            $('#SndBtn').prop('disabled', true);
+
+            $("[data-valmsg-for='name']").text("");
+            $("[data-valmsg-for='email']").text("");
+            $("[data-valmsg-for='subject']").text("");
+            $("[data-valmsg-for='message']").text("");
+
+
+        }
+        else {
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var subject = $("#subject").val();
+            var message = $("#message").val();
+
+            if (name == null || name == "") {
+                $("[data-valmsg-for='name']").text("This field is required.");
+                $("[data-valmsg-for='name']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else {
+                $("[data-valmsg-for='name']").text("");
+            }
+
+            if (email == null || email == "") {
+                $("[data-valmsg-for='email']").text("This field is required.");
+                $("[data-valmsg-for='email']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else {
+                $("[data-valmsg-for='email']").text("");
+            }
+
+            if (subject == null || subject == "") {
+                $("[data-valmsg-for='subject']").text("This field is required.");
+                $("[data-valmsg-for='subject']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else {
+                $("[data-valmsg-for='subject']").text("");
+            }
+
+            if (message == null || message == "") {
+                $("[data-valmsg-for='message']").text("This field is required.");
+                $("[data-valmsg-for='message']").css('color', '#ed5565');
+                e.preventDefault();
+            }
+            else {
+                $("[data-valmsg-for='message']").text("");
+            }
+
+        }
+    });
+
+
+    $('#name').keyup(function () {
+        if ($('#name').val() != null && $('#name').val() != "") {
+            $("[data-valmsg-for='name']").text("");
+        }
+    });
+
+    $('#email').keyup(function () {
+        if ($('#email').val() != null && $('#email').val() != "") {
+            $("[data-valmsg-for='email']").text("");
+        }
+    });
+
+    $('#subject').keyup(function () {
+        if ($('#subject').val() != null && $('#subject').val() != "") {
+            $("[data-valmsg-for='subject']").text("");
+        }
+    });
+
+    $('#message').keyup(function () {
+        if ($('#message').val() != null && $('#message').val() != "") {
+            $("[data-valmsg-for='message']").text("");
+        }
+    });
+
+    $(document).ready(function ()
+    {
+
+    });
+
+
+</script>
