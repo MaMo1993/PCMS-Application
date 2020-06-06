@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+<body>
+    @{
+        ViewBag.Title = "Unauthorised Request";
+    }
+</body>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Access Denied</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+    @*<link href="~/Content/PRoleStyle.css" rel="stylesheet" />*@
+    <script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var i = 0; var previous_hash = window.location.hash;
+            var x = setInterval(function () {
+                i++; window.location.hash = "/noop/" + i;
+                if (i == 10) {
+                    clearInterval(x);
+                    window.location.hash = previous_hash;
+                }
+            }, 10);
+        }
+
+    </script>
+
+</head>
+
+<body class="gray-bg" style="">
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        @{
+            if (TempData["message"] != null)
+            {
+                <script type="text/javascript">
+            swal({
+                title: "Access Denied",
+                text: @Html.Raw(Json.Encode(TempData["message"])),
+                type: "warning",
+                confirmButtonText: "OK",
+                closeOnConfirm: false
+            }, function () {
+                window.location.href = "@Url.Action("PreLocation", "Unauthorized", new {preUrl = ViewBag.PreLocation })";
+            });
+                </script>
+            }
+        }
+    </div>
+</body>
+
+</html>
+
+
